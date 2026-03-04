@@ -33,3 +33,5 @@ Desenvolvido em **Javascript** com foco em Clean Code.
 ---
 **Equipe:** Gabriel Ferreira da Silva, Gabriel de Oliveira Bernardi
 **Data:** 27 de Janeiro de 2026
+
+Olá Gabriel

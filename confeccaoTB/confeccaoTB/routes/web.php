@@ -1,0 +1,37 @@
+<?php
+
+use App\Http\Controllers\ProfileController;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\EstoqueController;
+use App\Http\Controllers\FornecedorController;
+use App\Http\Controllers\ProdutoController;
+use App\Http\Controllers\PedidoController;
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
+
+
+Route::get('/clientes', [ClienteController::class, 'index'])->name('clientes.index');
+
+Route::get('/pedidos', [PedidoController::class, 'pedido'])->name('Pedidos.blade');
+
+Route::get('/fornecedores', [FornecedorController::class, 'index'])->name('fornecedor.index');
+
+Route::get('/estoque', [EstoqueController::class, 'index'])->name('estoque.index');
+
+Route::get('/produto', [ProdutoController::class, 'index'])->name('produto.index');
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+require __DIR__.'/auth.php';
