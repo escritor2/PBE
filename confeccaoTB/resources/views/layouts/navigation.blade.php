@@ -6,7 +6,7 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
-                        <img src="{{ asset('images/logo.png') }}" alt="Logo TS Confecções" class="block h-12 w-auto">
+                        <img src="{{ asset('images/logo.png') }}" alt="Logo TS Confecções" class="block h-12 w-auto" onerror="this.src='https://ui-avatars.com/api/?name=TS+Confeccoes&color=7F9CF5&background=EBF4FF'">
                     </a>
                 </div>
 
@@ -19,31 +19,31 @@
                 </div>
 
                  <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('clientes.index')" :active="request()->routeIs('Clientes')">
+                    <x-nav-link :href="route('clientes.index')" :active="request()->routeIs('clientes.*')">
                         {{ __('Clientes') }}
                     </x-nav-link>
                 </div>
 
                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('pedidos.index')" :active="request()->routeIs('Pedidos')">
+                    <x-nav-link :href="route('pedidos.index')" :active="request()->routeIs('pedidos.*')">
                         {{ __('Pedidos') }}
                     </x-nav-link>
                 </div>
 
                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('fornecedores.index')" :active="request()->routeIs('Fornecedores')">
+                    <x-nav-link :href="route('fornecedores.index')" :active="request()->routeIs('fornecedores.*')">
                         {{ __('Fornecedores') }}
                     </x-nav-link>
                 </div>
 
                     <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('estoque.index')" :active="request()->routeIs('Estoque')">
+                    <x-nav-link :href="route('estoque.index')" :active="request()->routeIs('estoque.*')">
                         {{ __('Estoque') }}
                     </x-nav-link>
                 </div>
 
                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('produtos.index')" :active="request()->routeIs('Produtos')">
+                    <x-nav-link :href="route('produtos.index')" :active="request()->routeIs('produtos.*')">
                         {{ __('Produtos') }}
                     </x-nav-link>
                 </div>
@@ -100,6 +100,21 @@
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('clientes.index')" :active="request()->routeIs('clientes.*')">
+                {{ __('Clientes') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('pedidos.index')" :active="request()->routeIs('pedidos.*')">
+                {{ __('Pedidos') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('fornecedores.index')" :active="request()->routeIs('fornecedores.*')">
+                {{ __('Fornecedores') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('estoque.index')" :active="request()->routeIs('estoque.*')">
+                {{ __('Estoque') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('produtos.index')" :active="request()->routeIs('produtos.*')">
+                {{ __('Produtos') }}
             </x-responsive-nav-link>
         </div>
 

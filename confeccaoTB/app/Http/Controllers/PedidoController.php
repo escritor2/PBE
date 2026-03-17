@@ -29,8 +29,25 @@ class PedidoController extends Controller
         return redirect()->route('pedidos.index')->with('success', 'Pedido cadastrado com sucesso!');
     }
 
-    public function edit() {
-        return view('pedido.index');
+    public function edit($id)
+    {
+        $pedido = Pedidos::findOrFail($id);
+        return view('pedido.edit', compact('pedido'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $pedido = Pedidos::findOrFail($id);
+
+        $request->validate([
+            'nome' => 'required|string|max:255',
+            'telefone' => 'required|string|unique:pedidos,telefone,' . $id,
+            'endereco' => 'nullable|string',
+        ]);
+
+        $pedido->update($request->all());
+
+        return redirect()->route('pedidos.index')->with('success', 'Pedido atualizado com sucesso!');
     }
 
     public function destroy($id)

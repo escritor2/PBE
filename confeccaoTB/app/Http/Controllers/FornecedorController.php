@@ -29,8 +29,25 @@ class FornecedorController extends Controller
         return redirect()->route('fornecedores.index')->with('success', 'Fornecedor cadastrado com sucesso!');
     }
 
-    public function edit() {
-        return view('fornecedor.index');
+    public function edit($id)
+    {
+        $fornecedor = Fornecedor::findOrFail($id);
+        return view('fornecedor.edit', compact('fornecedor'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $fornecedor = Fornecedor::findOrFail($id);
+
+        $request->validate([
+            'nome' => 'required|string|max:255',
+            'telefone' => 'required|string|unique:fornecedor,telefone,' . $id,
+            'endereco' => 'nullable|string',
+        ]);
+
+        $fornecedor->update($request->all());
+
+        return redirect()->route('fornecedores.index')->with('success', 'Fornecedor atualizado com sucesso!');
     }
 
     public function destroy($id)

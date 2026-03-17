@@ -11,8 +11,26 @@
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
+        <!-- jQuery and jQuery Mask CDN -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        
+        <script>
+            $(document).ready(function() {
+                // Aplicar máscaras globais
+                const applyMasks = () => {
+                    $('#cpf').mask('000.000.000-00');
+                    $('#telefone').mask('(00) 00000-0000');
+                    $('.mask-cpf').mask('000.000.000-00');
+                    $('.mask-telefone').mask('(00) 00000-0000');
+                };
+
+                applyMasks();
+            });
+        </script>
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">
@@ -26,6 +44,7 @@
                     </div>
                 </header>
             @endisset
+
 
             <!-- Page Content -->
             <main>

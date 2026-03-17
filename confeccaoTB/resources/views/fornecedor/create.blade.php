@@ -20,7 +20,7 @@
 
                     <div>
                         <label class="block font-medium text-sm text-gray-700">Telefone</label>
-                        <input type="text" name="telefone" value="{{ old('telefone') }}" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 block w-full" required>
+                        <input type="text" name="telefone" id="telefone" value="{{ old('telefone') }}" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 block w-full" required>
                         @error('telefone') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
                     </div>
 
@@ -40,4 +40,5 @@
             </div>
         </div>
     </div>
+
 </x-app-layout>

@@ -10,7 +10,7 @@
         </div>
     </x-slot>
 
-    <div class="py-12">
+    <div class="py-12" x-data="{ deleteUrl: '' }">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             
             @if (session('success'))
@@ -41,13 +41,12 @@
                                     Editar
                                 </a>
 
-                                <form action="{{ route('pedidos.destroy', $pedido->id) }}" method="POST" onsubmit="return confirm('Tem certeza que deseja excluir este pedido?')">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="text-red-500 hover:text-red-700 text-sm font-semibold">
-                                        Excluir
-                                    </button>
-                                </form>
+                                <button 
+                                    type="button"
+                                    x-on:click="deleteUrl = '{{ route('pedidos.destroy', $pedido->id) }}'; $dispatch('open-modal', 'confirm-pedido-deletion')"
+                                    class="text-red-500 hover:text-red-700 text-sm font-semibold">
+                                    Excluir
+                                </button>
                             </div>
                         </div>
                     @empty
@@ -59,5 +58,31 @@
                 </div>
             </div>
         </div>
+
+        <!-- Delete Confirmation Modal -->
+        <x-modal name="confirm-pedido-deletion" :show="false" focusable>
+            <form method="post" :action="deleteUrl" class="p-6">
+                @csrf
+                @method('delete')
+
+                <h2 class="text-lg font-medium text-gray-900">
+                    {{ __('Tem certeza que deseja excluir este pedido?') }}
+                </h2>
+
+                <p class="mt-1 text-sm text-gray-600">
+                    {{ __('Esta ação não pode ser desfeita. Todos os dados associados a este pedido serão removidos permanentemente.') }}
+                </p>
+
+                <div class="mt-6 flex justify-end">
+                    <x-secondary-button x-on:click="$dispatch('close-modal', 'confirm-pedido-deletion')">
+                        {{ __('Cancelar') }}
+                    </x-secondary-button>
+
+                    <x-danger-button class="ms-3">
+                        {{ __('Excluir Pedido') }}
+                    </x-danger-button>
+                </div>
+            </form>
+        </x-modal>
     </div>
 </x-app-layout>
